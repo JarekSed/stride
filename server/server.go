@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/gorilla/mux"
 	"github.com/JarekSed/stride/parser"
+	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -22,6 +22,7 @@ type response struct {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/entities", Entities).Methods("POST")
+	// TODO(jsedlacek): make port configurable via command-line flag (or however they prefer to do their configuration)
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
