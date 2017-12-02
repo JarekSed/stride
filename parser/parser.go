@@ -15,8 +15,8 @@ var emoticonRegex = regexp.MustCompile(`\(([0-9A-Za-z]+)\)`)
 const MAX_EMOTICON_SIZE = 15
 
 type Link struct {
-	URL   string
-	Title string
+	URL   string `json:"url"`
+	Title string `json:"title"`
 }
 
 func Mentions(message string) []string {
