@@ -43,3 +43,22 @@ func TestMentions(t *testing.T) {
     t.Errorf("Mentions(%q): expected %q got %q", input, expected, found)
   }
 }
+
+func TestMentionsNoMatches(t *testing.T) {
+  input := "Yo, are you around"
+  expected := []string{}
+  found := Mentions(input)
+  if !itemsEqualIgnoringOrder(found, expected) {
+    t.Errorf("Mentions(%q): expected %q got %q", input, expected, found)
+  }
+}
+
+
+func TestMultipleMatches(t *testing.T) {
+  input := "@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016"
+  expected := []string{"bob", "john"}
+  found := Mentions(input)
+  if !itemsEqualIgnoringOrder(found, expected) {
+    t.Errorf("Mentions(%q): expected %q got %q", input, expected, found)
+  }
+}
