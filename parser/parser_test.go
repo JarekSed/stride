@@ -85,6 +85,24 @@ func TestMultipleMatches(t *testing.T) {
 	}
 }
 
+func TestEmoticons(t *testing.T) {
+	input := "Good morning! (megusta) (coffee)"
+	expected := []string{"megusta", "coffee"}
+	found := Emoticons(input)
+	if !stringsEqualIgnoringOrder(found, expected) {
+		t.Errorf("Mentions(%q): expected %q got %q", input, expected, found)
+	}
+}
+
+func TestEmoticonsNoMatches(t *testing.T) {
+	input := "Good morning! (this isn't valid) (thisalsoiswaytoolongtobeavalidemoticon)"
+	expected := []string{}
+	found := Emoticons(input)
+	if !stringsEqualIgnoringOrder(found, expected) {
+		t.Errorf("Mentions(%q): expected %q got %q", input, expected, found)
+	}
+}
+
 // TODO(jarek): mock out http calls, so tests are hermetic
 func TestLinks(t *testing.T) {
 	input := "@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016"
@@ -116,3 +134,5 @@ func TestLinks(t *testing.T) {
 		t.Errorf("Links(%q): expected %q got %q", input, expected, found)
 	}
 }
+
+// TODO(jarek): clarify expected behavior on overlapping conditions, and test. for example "@(random)"

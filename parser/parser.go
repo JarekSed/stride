@@ -10,6 +10,9 @@ import (
 )
 
 var mentionsRegex = regexp.MustCompile(`@(\w+)`)
+var emoticonRegex = regexp.MustCompile(`\(([0-9A-Za-z]+)\)`)
+
+const MAX_EMOTICON_SIZE = 15
 
 type Link struct {
 	URL   string
@@ -23,6 +26,17 @@ func Mentions(message string) []string {
 		mentions = append(mentions, item[1])
 	}
 	return mentions
+}
+
+func Emoticons(message string) []string {
+	found := emoticonRegex.FindAllStringSubmatch(message, -1)
+	emoticons := []string{}
+	for _, item := range found {
+		if len(item[1]) <= MAX_EMOTICON_SIZE+2 {
+			emoticons = append(emoticons, item[1])
+		}
+	}
+	return emoticons
 }
 
 func Links(message string) ([]Link, error) {
