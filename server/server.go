@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/jareksed/stride/parser"
+	"github.com/JarekSed/stride/parser"
 	"io/ioutil"
 	"log"
 	"net/http"
