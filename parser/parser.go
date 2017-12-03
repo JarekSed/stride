@@ -53,6 +53,7 @@ func Links(message string) ([]Link, error) {
 	return links, nil
 }
 
+// Bellow functions taken mostly verbatim from https://siongui.github.io/2016/05/10/go-get-html-title-via-net-html/
 func isTitleElement(n *html.Node) bool {
 	return n.Type == html.ElementNode && n.Data == "title"
 }
