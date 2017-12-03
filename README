@@ -8,7 +8,7 @@ I briefly thought about using AppEngine (or similar) to make scaling even simple
 
 Future TODOs (ideally this would most be integrated with existing system):
   - A load balancer would need to handle routing between instances, and implement detection for things like queries of death, DDOS, etc.
-  - Monitoring:
+  - Monitoring and logging:
     - QPS, Errors, Latency, Detection rate for each entity, Resource Usage, Uptime, Restarts, Binary Age
   - End-to-end Integration tests
   - Deployment configs
